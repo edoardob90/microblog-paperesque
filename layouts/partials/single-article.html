@@ -16,15 +16,10 @@
   </div>
   {{ end }}
   {{ if .Date }}
-    {{ if eq .Lastmod .Date }}
-      <div class="post-date"><span itemprop="datePublished">{{ .Date.Format "January 2, 2006" }}</span></div>
-      <meta itemprop="dateModified" content="{{ .Lastmod.Format "January 2, 2006" }}"/>
-    {{ else }}
-      <div class="post-date">Created: <span itemprop="datePublished">{{ .Date.Format "January 2, 2006" }}</span></div>
-      <div class="post-date">Last Edited: <span itemprop="dateModified">{{ .Lastmod.Format "January 2, 2006" }}</span></div>
-    {{ end }}
+  <div class="post-date"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "January 2, 2006" }}</time></div>
+  <meta itemprop="dateModified" content="{{ .Lastmod.Format "January 2, 2006" }}"/>
   {{ end }}
-  <div itemprop="articleBody" id="content" class="article-body margin-top-2em">
+  <div itemprop="articleBody" id="content" class="article-body margin-top-2em post-content e-content">
     {{ .Content }}
   </div>
 </article>
