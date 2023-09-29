@@ -5,36 +5,40 @@ sticky-nav
 {{ define "content" }}
 <section id="main" class="content-container article-pad-v">
   <h1 id="title" style="margin-bottom: 0.75em">{{with .Title}}{{.}}{{else}}{{.Site.Title}}{{end}}</h1>
- <div class="home h-feed">
-
-  <ul class="post-list list-unstyled list-of-titles">
-	{{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
-	{{ range $paginator.Pages  }}
-     <li class="h-entry">
-      <a href="{{ .Permalink }}" class="u-url">
-      {{ if .Title }}
-      <span class="post-title">{{ .Title }}</span><br>
-      {{ else }}
-      <div class="e-content">
-          {{ .Content }}
-      </div>
+  <div class="home h-feed sidepull-container">
+    <div class="sidepull-side">
+      <h1>Sidebar</h1>
+      <p>Lorem ipsum dolor sit amet</p>
+    </div>
+    <div class="sidepull-main">
+      <ul class="post-list list-unstyled list-of-titles">
+      {{ $paginator := .Paginate (where .Site.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 25) }}
+      {{ range $paginator.Pages  }}
+        <li class="h-entry">
+          <a href="{{ .Permalink }}" class="u-url">
+          {{ if .Title }}
+          <span class="post-title">{{ .Title }}</span><br>
+          {{ else }}
+          <div class="e-content">
+              {{ .Content }}
+          </div>
+          {{ end }}
+          <span class="post-meta">
+              <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </span>
+          <br>
+          {{ if .Params.categories }}
+          <span class="post-meta">
+            {{ range .Params.categories }}
+            #{{ . }} 
+            {{ end }}
+          </span>
+          {{ end }}
+          </a>
+        </li>
       {{ end }}
-      <span class="post-meta">
-          <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-      </span>
-      <br>
-      {{ if .Params.categories }}
-      <span class="post-meta">
-        {{ range .Params.categories }}
-        #{{ . }} 
-        {{ end }}
-      </span>
-      {{ end }}
-      </a>
-    </li>
-  {{ end }}
-  </ul>
-
+      </ul>
+    </div>
 </div>
 </section>
 {{ end }}

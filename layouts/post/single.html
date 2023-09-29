@@ -10,7 +10,7 @@
 
 {{- partial "single-footer-customisation" . -}}
 
-{{if (and (not .Parent.IsHome) (or .PrevInSection .NextInSection)) }}
+{{ if (and (not .Parent.IsHome) (or .PrevInSection .NextInSection)) }}
   <div class="nav-bkg-50 content-container-narrow-pad bottom-links text-0p75 drop-shadow">
     <nav class="flex-row">
     {{if .PrevInSection}}

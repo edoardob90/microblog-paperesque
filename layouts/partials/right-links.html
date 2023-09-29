@@ -1,5 +1,5 @@
 <ul class="list-unstyled right-links">
-{{ range .Site.Params.TopMenu }}
+{{ range .Site.Menus.main }}
           <li>
             <a href="{{ .url | relURL }}">
               <span class="post-title">{{ .name }}</span>
