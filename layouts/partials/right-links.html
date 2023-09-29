@@ -1,9 +1,15 @@
 <ul class="list-unstyled right-links">
-{{ range .Site.Menus.main }}
-          <li>
-            <a href="{{ .url | relURL }}">
-              <span class="post-title">{{ .name }}</span>
-            </a>
-          </li>
-{{ end }}
+  {{ range .Site.Menus.main }}
+  <li>
+  {{ if .Page.Params.redirect_url }}
+    <a href="{{ .Page.Params.redirect_url }}">
+      <span class="post-title">{{ .Name }}</span>
+    </a>
+  {{ else }}
+    <a href="{{ .URL | relLangURL | safeURL }}">
+      <span class="post-title">{{ .Name }}</span>
+    </a>
+  {{ end }}
+  </li>
+  {{ end }}
 </ul>

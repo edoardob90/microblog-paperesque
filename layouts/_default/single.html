@@ -1,0 +1,11 @@
+{{ define "body-classes" -}}
+  {{ if .Draft }}draft{{ end }} look-sheet-bkg
+{{- end }}
+
+{{ define "content" }}
+{{- partial "single-page" . -}}
+{{ end }}
+
+{{ define "footer" }}
+{{- partial "single-footer-customisation" . -}}
+{{ end }}
