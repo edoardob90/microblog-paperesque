@@ -1,0 +1,23 @@
+<head>
+
+{{ partial "meta.html" . }}
+
+<title>
+    {{ block "title" . }}
+    {{ if .IsHome }}
+    {{ .Site.Title }}
+    {{ else if .Title }}
+    {{ .Title }} | {{ .Site.Title }}
+    {{ else }}
+    {{ .Summary | plainify | truncate 40 }} | {{ .Site.Title }}
+    {{ end }}
+    {{ end }}
+</title>\
+
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="author" href="humans.txt" />
+
+{{ partial "microblog_head.html" . }}
+
+{{ partial "head_includes.html" . }}
+</head>

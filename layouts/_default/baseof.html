@@ -1,40 +1,7 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
->
-  <head>
-    {{ partial "meta.html" . }}
-
-    <title>
-      {{ block "title" . }}
-      {{ if .IsHome }}
-        {{ .Site.Title }}
-      {{ else if .Title }}
-        {{ .Title }} | {{ .Site.Title }}
-      {{ else }}
-        {{ .Summary | plainify | truncate 40 }} | {{ .Site.Title }}
-      {{ end }}
-      {{ end }}
-    </title>
-    
-    <link rel="canonical" href="{{ .Permalink }}" />
-
-    {{ with .Site.Params.RSSCanonicalLink }}
-      <link rel="alternate" type="application/rss+xml" href="{{ . | absURL }}" title="{{$.Site.Title}}" />
-    {{ else }}
-      {{- with .OutputFormats.Get "rss" -}}
-        {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-      {{- end -}}
-    {{ end }}
-
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    {{ partial "head_includes.html" . }}
-
-    {{ partial "microblog_head.html" . }}
-  </head>
+<html lang="{{ .Site.LanguageCode }}">
+  
+  {{ partial "head.html" . }}
   
   <body
   class="{{ block "body-classes" . }}{{ end }}"
