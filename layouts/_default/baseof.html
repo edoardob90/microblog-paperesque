@@ -4,11 +4,20 @@
   prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
 >
   <head>
-    <meta charset="utf-8" />
-
     {{ partial "meta.html" . }}
 
-    <title>{{ .Title }}{{ if not .IsHome }} || {{ $.Site.Title }}{{ end }}</title>
+    <title>
+      {{ block "title" . }}
+      {{ if .IsHome }}
+        {{ .Site.Title }}
+      {{ else if .Title }}
+        {{ .Title }} | {{ .Site.Title }}
+      {{ else }}
+        {{ .Summary | plainify | truncate 40 }} | {{ .Site.Title }}
+      {{ end }}
+      {{ end }}
+    </title>
+    
     <link rel="canonical" href="{{ .Permalink }}" />
 
     {{ with .Site.Params.RSSCanonicalLink }}
@@ -19,13 +28,18 @@
       {{- end -}}
     {{ end }}
 
-    {{ partial "head_includes.html" . }}
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    {{ partial "head_includes.html" . }}
+
+    {{ partial "microblog_head.html" . }}
   </head>
+  
   <body
   class="{{ block "body-classes" . }}{{ end }}"
   lang="{{ .Site.LanguageCode }}">
+  
   <div class="navbar nav-bkg drop-shadow">
     <nav class="content-container pagewide-bar-padding">
       <span class="divider">/ </span>
@@ -47,9 +61,15 @@
       {{ partial "right-links" . }}
     </nav>
   </div>
+
   {{ block "content" . }}{{ end }}
+  
   {{ if not .Params.hide_footer }}
     {{ block "footer" . }}{{ end }}
+  {{ end }}
+
+  {{ range .Site.Params.plugins_js }}
+    <script type="text/javascript" src="{{ . }}"></script>
   {{ end }}
   </body>
 </html>

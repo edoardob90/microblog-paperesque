@@ -8,7 +8,7 @@
 
 {{ define "footer" }}
 
-{{- partial "single-footer-customisation" . -}}
+{{- partial "custom_footer.html" . -}}
 
 {{ if (and (not .Parent.IsHome) (or .PrevInSection .NextInSection)) }}
   <div class="nav-bkg-50 content-container-narrow-pad bottom-links text-0p75 drop-shadow">
