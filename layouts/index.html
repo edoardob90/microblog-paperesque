@@ -7,8 +7,7 @@ sticky-nav
   <h1 id="title" style="margin-bottom: 0.75em">{{with .Title}}{{.}}{{else}}{{.Site.Title}}{{end}}</h1>
   <div class="home h-feed sidepull-container">
     <div class="sidepull-side">
-      <h1>Sidebar</h1>
-      <p>Lorem ipsum dolor sit amet</p>
+      <p class="description">{{ .Site.Params.itunes_description }}</p>
     </div>
     <div class="sidepull-main">
       <ul class="post-list list-unstyled list-of-titles">
@@ -19,9 +18,9 @@ sticky-nav
           {{ if .Title }}
           <span class="post-title">{{ .Title }}</span><br>
           {{ else }}
-          <div class="e-content">
-              {{ .Content }}
-          </div>
+          <div class="p-summary">
+            {{ .Summary | safeHTML }}
+          </div><br>
           {{ end }}
           <span class="post-meta">
               <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "January 2, 2006" }}</time>
