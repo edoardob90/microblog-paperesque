@@ -1,30 +1,26 @@
 {{ define "content" }}
-<section id="main" class="content-container article-pad-v">
+<section id="main" class="archive-categories content-container article-pad-v">
     <h1 id="title" style="margin-bottom: 0.75em">Archives</h1>
-    <div class="sidepull-container">
-        <div class="sidepull-main archive-categories">
 {{ $list := ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
 {{ if gt (len $list) 0 }}
-            <h3>Categories</h3>
-            {{ range $list }}
-            <span class="post-meta"><a href="{{ .Permalink }}">#{{ .Title }} </a></span>
-            {{ end }}
-            <hr>
+    <h3>Categories</h3>
+    {{ range $list }}
+    <span class="post-meta"><a href="{{ .Permalink }}">#{{ .Title }} </a></span>
+    {{ end }}
+    <hr>
 {{ end }}
-            <div class="full-archives h-feed">
-                <h3>All Posts</h3>
-                {{ $list := (where .Site.Pages "Type" "post") }}
-                {{ range $list }}
-                <p class="h-entry">
-                    <a href="{{ .Permalink }}" class="u-url"><span class="dt-published post-meta" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "Jan 2, 2006" }}</span></a>:
-                    {{ if .Title }}
-                        <span class="p-name post-title"><b>{{ .Title }}</b></span>
-                    {{ end }}
-                    <span class="p-summary">{{ .Summary | truncate 150 }}</span>
-                </p>
-                {{ end }}
-            </div>
-        </div>
+    <div class="full-archives h-feed">
+        <h3>All Posts</h3>
+        {{ $list := (where .Site.Pages "Type" "post") }}
+        {{ range $list }}
+        <p class="h-entry">
+            <a href="{{ .Permalink }}" class="u-url"><span class="dt-published post-meta" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "Jan 2, 2006" }}</span></a>:
+            {{ if .Title }}
+                <span class="p-name post-title"><b>{{ .Title }}</b></span>
+            {{ end }}
+            <span class="p-summary">{{ .Summary | truncate 150 }}</span>
+        </p>
+        {{ end }}
     </div>
 </section>
 {{ end }}
