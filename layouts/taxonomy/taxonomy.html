@@ -4,11 +4,19 @@
     <h1 id="title" style="margin-bottom: 0.75em">{{.Title}}</h1>
     <ul id="list" class="list-unstyled list-of-titles">
       {{ range .Data.Pages.ByDate.Reverse }}
-        <li class="{{ if .Draft }}draft{{ end }}">
-          <a href="{{ .RelPermalink}}">
-            <span class="post-title">{{ .Title }}</span>
+        <li class="h-entry">
+          <a href="{{ .Permalink}}">
+            {{ if .Title }}
+            <span class="post-title">{{ .Title }}</span><br>
+            {{ else }}
+            <div class="p-summary">
+            {{ .Summary | safeHTML }}
+            </div>
+            {{ end }}
             <br>
-            <span class="post-meta">{{ .Date.Format "January 2, 2006" }}</span>
+            <span class="post-meta">
+              <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            </span>
           </a>
         </li>
       {{ end }}
