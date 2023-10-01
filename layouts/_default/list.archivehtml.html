@@ -5,12 +5,9 @@
         <div class="sidepull-main archive-categories">
 {{ $list := ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
 {{ if gt (len $list) 0 }}
-            <h3>Categories</h3>
-            <ul>
-                {{ range $list }}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-                {{ end }}
-            </ul>
+            {{ range $list }}
+            <span class="post-meta"><a href="{{ .Permalink }}">#{{ .Title }} </a></span>
+            {{ end }}
 {{ end }}
             <div class="full-archives h-feed">
                 <h3>Full Post List</h3>
@@ -28,8 +25,4 @@
         </div>
     </div>
 </section>
-{{ end }}
-
-{{ define "footer" }}
-{{- partial "custom_footer.html" . -}}
 {{ end }}
