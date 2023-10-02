@@ -7,27 +7,7 @@
   class="{{ block "body-classes" . }}{{ end }}"
   lang="{{ .Site.LanguageCode }}">
   
-  <div class="navbar nav-bkg drop-shadow">
-    <nav class="content-container pagewide-bar-padding">
-      <span class="divider">/ </span>
-      <a href="{{ .Site.Home.RelPermalink  }}" >{{ .Site.Title  }}</a>
-      {{ block "breadcrumbs" . }}
-        {{- with .Parent -}}
-          {{- if not .IsHome -}}
-          <span class="divider">/ </span>
-          <a href="{{ .RelPermalink }}">
-            {{- with .Params.breadcrumb_label -}}
-              {{- . -}}
-            {{- else -}}
-              {{- .Title -}}
-            {{- end -}}
-          </a>
-          {{- end -}}
-        {{- end -}}
-      {{ end }}
-      {{ partial "right-links" . }}
-    </nav>
-  </div>
+  {{ partial "navbar.html" . }}
 
   {{ block "main" . }}{{ end }}
   

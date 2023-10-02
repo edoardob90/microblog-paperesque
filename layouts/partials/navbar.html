@@ -1,0 +1,25 @@
+<div class="navbar nav-bkg drop-shadow">
+    <nav class="content-container pagewide-bar-padding">
+        <div class="navbar-left">
+            <span class="divider">/ </span>
+            <a href="{{ .Site.Home.RelPermalink  }}" >{{ .Site.Title  }}</a>
+            {{ block "breadcrumbs" . }}
+                {{- with .Parent -}}
+                {{- if not .IsHome -}}
+                <span class="divider">/ </span>
+                <a href="{{ .RelPermalink }}">
+                    {{- with .Params.breadcrumb_label -}}
+                    {{- . -}}
+                    {{- else -}}
+                    {{- .Title -}}
+                    {{- end -}}
+                </a>
+                {{- end -}}
+                {{- end -}}
+            {{ end }}
+        </div>
+        <div class="navbar-right">
+            {{ partial "right-links" . }}
+        </div>
+    </nav>
+</div>
