@@ -1,6 +1,4 @@
-{{ define "body-classes" -}}
-  {{ if .Draft }}draft{{ end }} look-sheet-bkg
-{{- end }}
+{{ define "body-classes" }}look-sheet-bkg{{ end }}
 
 {{ define "main" }}
 {{- partial "single-article" . -}}
@@ -11,7 +9,7 @@
 {{- partial "custom_footer.html" . -}}
 
 {{ if (and (not .Parent.IsHome) (or .PrevInSection .NextInSection)) }}
-  <div class="nav-bkg-50 content-container-narrow-pad bottom-links text-0p75 drop-shadow">
+  <div class="navbar nav-bkg-50 content-container-narrow-pad bottom-links text-0p75 drop-shadow">
     <nav class="flex-row">
     {{ if .PrevInSection }}
     <a href="{{.PrevInSection.Permalink}}" class="flex-row v-center no-underline"  style="max-width:45%;">
